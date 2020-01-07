@@ -1,0 +1,21 @@
+language: python
+sudo: false
+dist: trusty
+
+addons:
+  apt:
+    packages:
+    - check
+    - python3-pip
+
+python:
+  - "3.6"
+  - "3.7"
+  - "pypy3"
+
+install:
+  - pip install .[dev]
+
+script:
+  - PYTHONPATH=.:$PYTHONPATH ./test-travis.sh
+
