@@ -1,7 +1,8 @@
 # Useful doc on Python magic methods:
 # https://rszalski.github.io/magicmethods/
-import itertools
 
+import itertools
+from math import sqrt
 
 class Vector:
     def __init__(self, arr=None, size=None):
@@ -46,19 +47,32 @@ class Vector:
         return sum(self.d)
 
     def __setitem__(self, key, value):
-        if isinstance(key, Vector): raise ValueError('Redundant check to make conflict')
         self.d[key] = value
 
-    def __cmp__(self, other):
-        # TODO: implement, -1 if self < other, 0 if self == other, 1 if self > other
-        return -1
+    # magic __cmp__ function is deprecated since Python3
+    # def __cmp__(self, other):
+    #     return (self.length() > other.length()) - (self.length() < other.length())
 
+    def __eq__(self, other):
+        return self.length() == other.length()
+
+    def __lt__(self, other):
+        return self.length() < other.length()
+
+    def __gt__(self, other):
+        return self.length() > other.length()
+
+    def __le__(self, other):
+        return self.length() <= other.length()
+
+    def __ge__ (self, other):
+        return self.length() >= other.length()
+    
     def __neg__(self):
         return Vector([-x for x in self.d])
 
     def __reversed__(self):
-        # TODO: implement vector element reversal (hint: list(reversed(self.d)))
-        return Vector()
+        return Vector(list(reversed(self.d)))
 
     def __add__(self, other):
         if isinstance(other, int):
@@ -67,10 +81,9 @@ class Vector:
             if len(self) != len(other): raise ValueError('Incompatible size')
             return Vector([self.d[i] + other[i] for i in range(len(self))])
 
+    # substraction is adding an inverse (__neg__)
     def __sub__(self, other):
-        # TODO: implement vector subtraction, comment change to make conflict
-        # you may use __add__() and negation, like return (-self + other)
-        return None
+        return self + (-other)
 
     def __mul__(self, other):
         if isinstance(other, int):
@@ -185,4 +198,3 @@ class Matrix:
         for i, j in self.index_iter():
             m[i][j] = m[i][j] + other[i][j]
         return m
-
