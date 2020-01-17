@@ -1,6 +1,6 @@
 # Useful doc on Python magic methods:
 # https://rszalski.github.io/magicmethods/
-
+from math import sqrt
 
 class Vector:
     def __init__(self, arr=None, size=None):
@@ -62,4 +62,4 @@ class Vector:
         return Vector([x ^ other for x in self.d])
 
     def length(self):
-        return math.sqrt(sum(x*x for x in self.d))
+        return sqrt(sum(x*x for x in self.d))
