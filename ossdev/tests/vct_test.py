@@ -19,6 +19,60 @@ class VectorTest(unittest.TestCase):
 
         self.assertEqual(c.get(), [3, 3, 3, 3])
 
+    def test_setitem(self):
+        a = Vector(size = 4)
+        a[1] = 1
+
+        self.assertEqual(a[1], 1)
+
+    def test_neg(self):
+        a = Vector([1, 2, 3])
+        b = -a
+
+        self.assertEqual(b.get(), [-1, -2, -3])
+
+    def test_reversed(self):
+        a = Vector([1, 2, 3])
+        b = reversed(a)
+        self.assertEqual(b.get(), [3, 2, 1])
+
+    def test_sub(self):
+        a = Vector([0, 1, 2, 3])
+        b = Vector([3, 2, 1, 0])
+        c = a - b
+
+        self.assertEqual(c.get(), [-3, -1, 1, 3])
+
+    def test_mul(self):
+        a = Vector([-1, 0, 2])
+        b = a * (-3)
+
+        self.assertEqual(b.get(), [3, 0, -6])
+
+    def test_xor(self):
+        a = Vector([-1, 0, 2])
+        b = a ^ 3
+        c = [(-1)^3, 0^3, 2^3]
+        
+        self.assertEqual(b.get(), c)
+
+    def test_length(self):
+        a = Vector([3, 4])
+
+        self.assertEqual(a.length(), 5)
+        
+    def test_cmp(self):
+        a = Vector([3, 4])
+        b = Vector([4, 3])
+        c = Vector([0, 1])
+        
+        self.assertTrue(a == a)
+        self.assertTrue(a == b)
+        self.assertFalse(a == c)
+        self.assertTrue(a > c)
+        self.assertTrue(a >= c)
+        self.assertFalse(b <= c)
+        self.assertFalse(b < c)
 
 if __name__ == "__main__":
     unittest.main()  # pragma: no cover
