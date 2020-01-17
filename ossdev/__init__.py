@@ -68,6 +68,7 @@ class Vector:
         elif isinstance(other, Vector):
             return Vector([self.d[i] + other[i] for i in range(len(self))])
 
+    # substraction is adding an inverse (__neg__)
     def __sub__(self, other):
         return self + (-other)
 
