@@ -37,9 +37,25 @@ class Vector:
         self.d[key] = value
         return None
 
-    def __cmp__(self, other):
-        return (self.length() > other.length()) - (self.length() < other.length()) 
+    # magic __cmp__ function is deprecated since Python3
+    # def __cmp__(self, other):
+    #     return (self.length() > other.length()) - (self.length() < other.length())
 
+    def __eq__(self, other):
+        return self.length() == other.length()
+
+    def __lt__(self, other):
+        return self.length() < other.length()
+
+    def __gt__(self, other):
+        return self.length() > other.length()
+
+    def __le__(self, other):
+        return self.length() <= other.length()
+
+    def __ge__ (self, other):
+        return self.length() >= other.length()
+    
     def __neg__(self):
         return Vector([-x for x in self.d])
 
