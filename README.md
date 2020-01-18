@@ -10,15 +10,16 @@ Very simple vector implementation supporting basic operations.
 from ossdev import Vector, Matrix
 ```
 
-Vector initialization and printing:
+Initialization and printing:
 ```python
 a = Vector([0, 1, 2, 3])
 b = Vector(size=4)
 print(a)
 
 m = Matrix.ident(4)
+n = Matrix.square(2)
+o = Matrix.from_matrix(n)
 print(m)
-print(m + m)
 ```
 
 Operations:
@@ -31,7 +32,10 @@ Operations:
   - row-vector * col-vector
   - col-vector * row-vector
 - Reversing vector elements: `reversed(a)`
-- Vector XOR: `a ^ 1`
+- XOR with a scalar: `a ^ 1`
+- Vector XOR: `a ^ b`
+- AND with a scalar: `a & 1`
+- Vector AND: `a & b`
 - Vector length: `a.length()`
 - Vector length comparison:
 ```python
@@ -45,7 +49,7 @@ a <= b
 Caution: `==` operator does **NOT** test for identity, it tests whether the **length** of two vectors is equal.
 
 Matrix operations:
-- Addition
+- Addition `m + n`
 
 ## Installation
 
